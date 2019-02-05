@@ -3,7 +3,7 @@
     var semver = require("semver");
     
     desc("Default Build");
-    task("default", ["version"],function(){
+    task("default", ["version","Lint"],function(){
         console.log("\n\nBuild Ok");
     });
     desc("Check Node Version");
@@ -20,5 +20,10 @@
         }
 
     });
+    desc("Lint JavaScript Code");
+    task("Lint", function(){
+        console.log("Linting JavaScript");
+        jake.exec("node node_modules/jshint/bin/jshint jakefile.js",{interactive : true }, complete);
+    },{async:true});
 
 }());
