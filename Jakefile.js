@@ -23,18 +23,16 @@
     });
     desc("Lint JavaScript Code");
     task("Lint", function(){
-        console.log("Linting JavaScript");
+        process.stdout.write("Linting JavaScript");
 
         jshint.checkFiles({
-            files: "jakefile.js",
+            files: "Jakefile.js",
             options:{},
-            globals:{},
+            globals:{}
         },complete ,fail);
 
 
-/*
-        jake.exec("node node_modules/jshint/bin/jshint jakefile.js",{interactive : true }, complete);
-*/
+        // jake.exec("node node_modules/jshint/bin/jshint jakefile.js",{interactive : true }, complete);
     },{async:true});
 
 }());
