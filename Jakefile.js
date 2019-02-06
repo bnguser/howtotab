@@ -1,6 +1,7 @@
 (function(){
     "use strict";
     var semver = require("semver");
+    var jshint = require("simplebuild-jshint");
     
     desc("Default Build");
     task("default", ["version","Lint"],function(){
@@ -23,7 +24,17 @@
     desc("Lint JavaScript Code");
     task("Lint", function(){
         console.log("Linting JavaScript");
+
+        jshint.checkFiles({
+            files: "jakefile.js",
+            options:{},
+            globals:{},
+        },complete ,fail);
+
+
+/*
         jake.exec("node node_modules/jshint/bin/jshint jakefile.js",{interactive : true }, complete);
+*/
     },{async:true});
 
 }());
