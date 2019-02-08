@@ -1,4 +1,4 @@
-/*globals desc : false, task:false, complete : false, fail : false */
+/*globals jake:false, desc:false, task:false, complete:false, fail:false */
 
 
 (function(){
@@ -6,10 +6,22 @@
     var semver = require("semver");
     var jshint = require("simplebuild-jshint");
     
+    //*** General tasks
+
     desc("Default Build");
-    task("default", ["version","Lint"],function(){
+    task("default", ["version","Lint", "run"],function(){
         console.log("\n\nBuild Ok");
     });
+
+    desc("Run localhost server");
+    task("run", function(){
+        jake.exec("node node_modules/http-server/bin/http-server src",  {interactive : true}, complete);
+    });
+
+
+
+    //*** Supporting tasks
+
     desc("Check Node Version");
     task("version",function(){
         console.log("Check node Version : .");
