@@ -9,7 +9,7 @@
     //*** General tasks
 
     desc("Default Build");
-    task("default", ["version","Lint", "run"],function(){
+    task("default", ["version","Lint"],function(){
         console.log("\n\nBuild Ok");
     });
 
@@ -41,7 +41,7 @@
         process.stdout.write("Linting JavaScript");
 
         jshint.checkFiles({
-            files: "Jakefile.js",
+            files: ["Jakefile.js", "src/**/*.js"],
             options:{
                 bitwise : true,
                 eqeqeq : true,
