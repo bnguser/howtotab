@@ -61,7 +61,14 @@
                 browser: true,
 
             },
-            globals:{}
+            globals:{
+                describe: false,
+                it: false,
+                before: false,
+                after: false,
+                beforEach: false,
+                afterEach: false
+            },
         },complete ,fail);
 
 
