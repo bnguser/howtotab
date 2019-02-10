@@ -2,16 +2,19 @@
     "use strict";
 
 
+    var assert = require("chai").assert;
 
-    assertEqual(add(3,4), 7);
+// basic addition
+    assert.equal(add(3,4), 7);
+
+// flaosting point addition
+
+    assert.equal(add(0.1,0.2), 0.30000000000000004);
 
 
     function add(a,b){
         return a + b;
     }
-    function assertEqual(actual, expected){
 
-        if (actual !== expected) throw new Error("Expected" + expected + ",but got" + actual);
-    }
 
 }());
