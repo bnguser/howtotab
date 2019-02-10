@@ -5,16 +5,22 @@
     "use strict";
     var semver = require("semver");
     var jshint = require("simplebuild-jshint");
+    var karma = require("simplebuild-karma");
+
+    var KARMA_CONF = "karma.conf.js";
     
     //*** General tasks
 
     desc("Start the karma server(run this first)");
     task("karma", function(){
-        console.log("Starting Karma Server:");
-    });
+        console.log("staring the server :");
+        karma.start({
+            configFile : KARMA_CONF
+        }, complete, fail);
+    },{async : true});
 
     desc("Default Build");
-    task("default", ["version","Lint"],function(){
+    task("default", ["version","Lint","test"],function(){
         console.log("\n\nBuild Ok");
     });
 
@@ -37,7 +43,6 @@
         var actualVersion = process.version;
         if(semver.neq(expectedVersion,actualVersion)){
             fail("Incorrect Node version : expected " + expectedVersion + "but was" + actualVersion);
-
         }
 
     });
@@ -51,9 +56,16 @@
             globals: lintGlobals()
         },complete ,fail);
 
-
         // jake.exec("node node_modules/jshint/bin/jshint jakefile.js",{interactive : true }, complete);
     },{async:true});
+
+    desc("Run test");
+    task("test", function(){
+       console.log("Testing Javascript");
+       karma.run({
+           configFile : KARMA_CONF
+       }, complete, fail);
+    },{async : true});
 
     function lintOptions(){
         return {
