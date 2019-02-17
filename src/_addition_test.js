@@ -1,16 +1,17 @@
 (function() {
     "use strict";
 
+    var addition = require("./addition.js");
 
     describe("Addition", function(){
        it("add positive numbers", function(){
 
-           assertEqual(add(3,4), 7);
+           assertEqual(addition.add(3,4), 7);
        });
        it("use IEEE 754 floating point number", function(){
            // floating point addition
 
-           assertEqual(add(0.1,0.2), 0.30000000000000004);
+           assertEqual(addition.add(0.1,0.2), 0.30000000000000004);
        });
     });
 
@@ -20,10 +21,6 @@
     }
 
 
-
-    function add(a,b){
-        return a  + b;
-    }
 
 
 }());
