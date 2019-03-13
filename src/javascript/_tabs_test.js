@@ -5,10 +5,18 @@
     var tabs = require("./tabs.js");
 
     describe("Tabs", function(){
-       it("has an API", function(){
+       it("hides an element", function(){
 
-            tabs.initialize();
+            var element = document.createElement("div");
+            document.body.appendChild(element);
 
+            tabs.initialize(element);
+
+            var styles = getComputedStyle(element);
+            var display = styles.getPropertyValue("display");
+
+
+            assert.equal(display, "none");
 
 
 
