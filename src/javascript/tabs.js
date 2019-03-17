@@ -19,12 +19,15 @@
             element.classList.add(contentHideClass);
         });
         defaultElement.classList.remove(contentHideClass);
-       if(tabs!== undefined) tabs[0].classList.add(activeTabClass);
-        
-    //     var classes = element.getAttribute("class");
-    //     if(classes === null) classes = className;
-    //    else classes +=" " +className;
+       
 
-    //     element.setAttribute("class", classes);
-    };
+       var activeIndex = findIndexOfDefualtElement(content, defaultElement);
+        tabs[activeIndex].classList.add(activeTabClass);
+        };
+        function findIndexOfDefualtElement(contentTabs, defaultContentTab){
+            for(var i=0; i<contentTabs.length; i++)     {
+                if(contentTabs[i]=== defaultContentTab) return i;
+            }
+            throw new Error ("could not find default in list");
+        }
 }());
