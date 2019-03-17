@@ -107,7 +107,7 @@
             nonew : true,
             strict : true,
             undef : true,
-
+            jasmine : true,
             node : true,
             browser: true,
 

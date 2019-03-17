@@ -5,36 +5,41 @@
     var tabs = require("./tabs.js");
 
     describe("Tabs", function(){
+
+        var container;
+
+        beforeEach(function(){
+            container = document.createElement("div");
+           document.body.appendChild(container);
+            
+        });
+        afterEach(function(){
+            removeElement(container);
+        });
        it("set a class on an element when that element has no existing classes", function(){
 
-            var element = document.createElement("div");
+            var element = addElement("div");
           //  document.body.appendChild(element);
             tabs.initialize(element, "someClass");
-            assert.equal(getClass(element), "none");
-            removeElement(element);
-            // var div = document.createElement("div");
-           // div.innerHTML = "This is an example.";
-           // document.body.appendChild(div);
-           // div.parentNode.removeChild(div);
+            assert.equal(getClass(element), "someClass");
+           
        });
        it("set a class on an element without erasing existing class", function(){
-           var element = document.createElement("div");
+           var element = addElement("div");
+           element.setAttribute("class", "existingClass");
            tabs.initialize(element, "newClass");
            assert.equal(getClass(element), "existingClass newClass");
-           removeElement(element);
+          
        });
        function getClass(element){
         return element.getAttribute("class");
        }
-       function addElement(tagname){
-           var element = document.createElement(tagname);
+       function addElement(tagName){
+           var element = document.createElement(tagName);
+           container.appendChild(element);
            return element;
        }
-       function getDisplayProperty(element){
-        var styles = getComputedStyle(element);
-        return styles.getPropertyValue("display");
 
-       }
        function removeElement(element){
         element.parentNode.removeChild(element);
 
