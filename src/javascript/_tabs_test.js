@@ -16,28 +16,37 @@
         afterEach(function(){
             removeElement(container);
         });
-       it("hides an element by setting a class ", function(){
+       it("hides all content elements expect the default upon initialization", function(){
 
-            var element = addElement("div");
-          //  document.body.appendChild(element);
-            tabs.initialize([element], "someClass");
-            assert.equal(getClasses(element), "someClass");
-           
-       });
-       it("hides multiple element", function(){
         var element1 = addElement("div");
-        var element2 = addElement("div");
+        var defaultElement = addElement("div");
         var element3 = addElement("div");
-        tabs.initialize([element1, element2, element3], "hideClass");
-        assert.equal(getClasses(element1), "hideClass", "element1");
-        assert.equal(getClasses(element2), "hideClass", "element2");
-        assert.equal(getClasses(element3), "hideClass", "element3");
+
+        tabs.initialize({
+            content : [element1, defaultElement, element3],
+            default : defaultElement,
+            contentHideClass : "hideClass"
+        });
+            
+            
+        
+        assert.equal(getClasses(element1), "hideClass", "element1 should be hidden");
+        assert.equal(getClasses(defaultElement), "", "default element should not be hidden");
+        assert.equal(getClasses(element3), "hideClass", "element3 should be hidden");
        });
-       it("preserves existing classes when hides an element", function(){
-           var element = addElement("div");
-           element.setAttribute("class", "existingClass");
-           tabs.initialize([element], "newClass");
-           assert.equal(getClasses(element), "existingClass newClass");
+
+       it("preserves existing classes when hides an content element", function(){
+
+        var defaultElement = addElement("div");
+           var hiddenElement = addElement("div");
+           hiddenElement.setAttribute("class", "existingClass");
+           tabs.initialize({
+            content : [defaultElement,hiddenElement],
+            default : defaultElement,
+            contentHideClass : "newClass"
+        });
+
+         assert.equal(getClasses(hiddenElement), "existingClass newClass");
           
        });
       
