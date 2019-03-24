@@ -5,8 +5,8 @@
     var tabs = require("./tabs.js");
 
     describe("Tabs", function(){
+        var ACTIVE_TAB = "activeClass";
         var HIDDEN_CONTENT = "hideClass";
-         var ACTIVE_TAB = "activeTab";
         var IRRELEVANT = "irrelevant";
         var container;
 
@@ -52,8 +52,8 @@
             activeTabClass : ACTIVE_TAB,
             hiddenContentClass : IRRELEVANT
         });
-        assertTabActive(defaultTab, "defaultTab should not be hidden");
         assertTabInactive(tab1, "tab1 should be hidden");
+        assertTabActive(defaultTab, "defaultTab should not be hidden");
         assertTabInactive(tab3, "tab3 should be hidden");
         
         
@@ -129,8 +129,8 @@
            return tab;
        }
        function createTabContent(){
-        var tab = addElement("content");
-        tab.innerHTML = "tab";
+        var tab = addElement("div");
+        tab.innerHTML = "content";
         return tab;
     }
 
