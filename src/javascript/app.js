@@ -14,8 +14,8 @@
 
 
         tabs.initialize({
-            tabs: [tab1,tab2,tab3],
-            content: [content1,content2,content3],
+            tabs: [ tab1, tab2, tab3 ],
+            content: [ content1, content2, content3 ],
             defaultTab: tab1,
             activeTabClass: "active",
             hiddenContentClass: "hidden"

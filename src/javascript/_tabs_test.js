@@ -144,5 +144,10 @@
         element.parentNode.removeChild(element);
 
        }
+       function getDisplayValue(element){
+        var styles = getComputedStyle(element);
+        return  styles.getPropertyValue("display");
+     
+       }
     });
 }());

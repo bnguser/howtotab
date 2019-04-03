@@ -1,8 +1,7 @@
 (function(){
     "use strict";
 
-    var classList = require("../vendor/classList.js");
-    classList.shim();
+    
     exports.initialize = function initialize(options){
 
         checkOption(options.tabs, "options.tabs");
@@ -38,12 +37,12 @@
         contentToShow.classList.remove(options.hiddenContentClass);
         
     }
-        function findIndex(contentTabs, tabToShow){
+        function findIndex(contentTabs, defaultContentTab){
             for(var i=0; i < contentTabs.length; i++)     {
-                if(contentTabs[i] === tabToShow) 
+                if(contentTabs[i] === defaultContentTab) 
                 return i;
             }
-            throw new Error ("could not find tab to show " + tabToShow.outerHTML);
+            throw new Error ("could not find default in list");
         }
         function checkOption(option, name){
             if(option === undefined) throw new Error ("Expected" + name);
